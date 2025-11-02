@@ -1,13 +1,23 @@
 <script setup lang="ts">
-const daysWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+import { useCalendar } from '../scripts/useCalendar';
+import {computed, watch} from "vue";
+const props = defineProps<{
+  language: string
+}>()
+const { monthName, setLang, daysWeek } = useCalendar();
 const days = Array(24).fill(0)
+const lg = computed(() => props.language)
+watch(lg,() => {
+  if (!lg.value) return
+  setLang(lg.value)
+})
 </script>
 
 <template>
   <div class="calendar">
     <div class="header">
       <button class="header-btn">&#9668;</button>
-      <div class="month"> Jul 2018 </div>
+      <div class="month"> {{monthName}} 2018 </div>
       <button class="header-btn">&#9658;</button>
     </div>
     <div class="days">
