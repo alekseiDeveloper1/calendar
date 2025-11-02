@@ -8,7 +8,7 @@
   const emit = defineEmits<{
     (e: 'setLang', value: string): void
   }>()
-  const language = ref('en-US')
+  const language = ref('ru-RU')
 </script>
 <template>
   <select class="select-lang" v-model="language" @change="() => emit('setLang', language)">
